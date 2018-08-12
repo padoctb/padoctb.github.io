@@ -1,32 +1,40 @@
-import React, { Component } from 'react';
-import "./app.scss"
+import React, {Component} from 'react'
+import "./styles/app.scss"
+import Header from "./components/Header"
+import Search from "./components/Search"
+import MainBlock from "./components/MainBlock"
+import Loader from "./components/Loader"
 
 class App extends Component {
 
-  state = {
-    img: null
-  }
-
   render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <h1 onClick={this.load} className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          {this.state.img ? <img src={`https://image.tmdb.org/t/p/w500/${this.state.img}`}/> : null}
-        </p>
-      </div>
-    );
-  }
+    return(
+      <React.Fragment>
+        <Header/>
 
-  load = () => {
-    fetch("https://api.themoviedb.org/3/movie/550?api_key=b6d2e3a714047dd33bb390fcbc6cdc5f")
-    .then(res => res.json())
-    .then(res => this.setState({
-      img: res.poster_path
-    }))
+        <main className="main-wrapper">
+
+          <MainBlock title="Search">
+            <Search/>
+          </MainBlock>
+
+          <MainBlock title="Popular">
+            <Loader/>
+          </MainBlock>
+
+          <MainBlock title="Top Rated">
+            <Loader/>
+          </MainBlock>
+
+          <MainBlock title="Upcoming">
+            <Loader/>
+          </MainBlock>
+
+        </main>
+
+      </React.Fragment>
+    )
   }
 }
 
-export default App;
+export default App

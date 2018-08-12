@@ -1,0 +1,16 @@
+@import "./../../styles/_vars.scss";
+
+.main-header {
+  height: 70px;
+  background: $blue;
+  color: $lightgray;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  & .main-header__logo {
+    & .main-header__descr {
+      font-size: 12px;
+    }
+  }
+}

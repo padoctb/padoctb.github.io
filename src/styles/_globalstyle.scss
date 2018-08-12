@@ -1,0 +1,19 @@
+@import "vars";
+
+h2 {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: $mainFont;
+  background-image: url("./../tools/img/main_bg.png");
+  background-color: $lightgray;
+  min-width: 320px;
+}
+
+.main-wrapper {
+  max-width: 940px;
+  margin: 0 auto;
+  padding: 5px;
+}
