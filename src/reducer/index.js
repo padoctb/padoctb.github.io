@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux'
-import testReducer from './testReducer.js'
+import indexPreviewMovieList from './indexPreviewMovieList.js'
 
 export default combineReducers({
-  test: testReducer
+  indexPreviewMovieList: indexPreviewMovieList
 })
