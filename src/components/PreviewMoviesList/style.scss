@@ -1,0 +1,24 @@
+@import "./../../styles/_vars.scss";
+
+.movies-list-preview__more-btn {
+  display: block;
+  color: $lightgray;
+  background-color: $blue;
+  padding: 8px;
+  border-radius: 5px;
+  align-self: flex-bottom;
+  width: 200px;
+  margin: 0 auto;
+  margin-top: 55px;
+  transition: all 0.2s;
+  opacity: 0.8;
+  &:hover {
+    box-shadow: $wrapperShadow1;
+    opacity: 1;
+  }
+}
+
+.movies-list-preview__more-btn-wrapper {
+  width: 100%;
+  text-align: center;
+}

@@ -1,32 +1,48 @@
-import React, { Component } from 'react';
-import "./app.scss"
+import React, {Component} from 'react'
+import "./styles/app.scss"
+import Header from "./components/Header"
+import Search from "./components/Search"
+import MainBlock from "./components/MainBlock"
+import PreviewMoviesList from "./components/PreviewMoviesList"
+import CategoriesRoute from "./routes/CategoriesRoute"
+import Footer from "./components/Footer"
 
 class App extends Component {
 
-  state = {
-    img: null
-  }
-
   render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <h1 onClick={this.load} className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          {this.state.img ? <img src={`https://image.tmdb.org/t/p/w500/${this.state.img}`}/> : null}
-        </p>
-      </div>
-    );
-  }
+    return(
+      <React.Fragment>
+        <Header/>
 
-  load = () => {
-    fetch("https://api.themoviedb.org/3/movie/550?api_key=b6d2e3a714047dd33bb390fcbc6cdc5f")
-    .then(res => res.json())
-    .then(res => this.setState({
-      img: res.poster_path
-    }))
+        <main className="main-wrapper">
+
+          <MainBlock exact={false} path={`/`} title="Search">
+            <Search/>
+          </MainBlock>
+
+          <CategoriesRoute/>
+
+          <MainBlock exact={true} path={`/`} title="Popular">
+            <PreviewMoviesList category={'popular'}/>
+          </MainBlock>
+
+          <MainBlock exact={true} path={`/`} title="Top Rated">
+            <PreviewMoviesList category={'top_rated'}/>
+          </MainBlock>
+
+          <MainBlock exact={true} path={`/`} title="Upcoming">
+            <PreviewMoviesList category={'upcoming'}/>
+          </MainBlock>
+
+        </main>
+
+        <Footer/>
+
+      </React.Fragment>
+    )
   }
 }
 
-export default App;
+export default App
+
+// b6d2e3a714047dd33bb390fcbc6cdc5f

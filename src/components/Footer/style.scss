@@ -1,0 +1,24 @@
+@import "./../../styles/_vars.scss";
+@import "./../../styles/_mixins.scss";
+
+.main-footer {
+  height: 85px;
+  background-color: $blue;
+  color: $lightgray;
+  font-size: 14px;
+  padding: 15px 0;
+  &__content {
+    @include mainWrapper();
+    margin: 0 auto;
+    text-align: center;
+    & a {
+      color: $lightgray;
+      display: block;
+      padding: 5px 0;
+      opacity: 0.6;
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+}

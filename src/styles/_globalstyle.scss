@@ -1,0 +1,29 @@
+@import "vars";
+@import "mixins";
+
+h2 {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: #000;
+  text-decoration: none;
+}
+
+body {
+  font-family: $mainFont;
+  background-image: url("./../tools/img/main_bg.png");
+  background-color: $lightgray;
+  min-width: 320px;
+}
+
+.main-wrapper {
+  @include mainWrapper()
+  min-height: calc(100vh - 80px); //footer fix
+}

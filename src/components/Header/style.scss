@@ -1,0 +1,24 @@
+@import "./../../styles/_vars.scss";
+
+.main-header {
+  height: 70px;
+  background: $blue;
+  color: $lightgray;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &__logo {
+    color: $lightgray;
+    transition: all 0.1s;
+    &:hover {
+      opacity: 0.7
+    }
+    &:active {
+      opacity: 0.5
+    }
+    & .main-header__descr {
+      font-size: 12px;
+    }
+  }
+}

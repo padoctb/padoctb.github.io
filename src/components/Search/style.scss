@@ -1,0 +1,19 @@
+@import "./../../styles/_vars.scss";
+
+.search__input {
+  width: 100%;
+  padding: 15px;
+  display: block;
+  box-sizing: border-box;
+  border-radius: 5px;
+  outline: none;
+  border: 1px solid #A8A8A8;
+  transition: all 0.2s;
+  &:hover {
+    border: 1px solid #B6CAE6;
+  }
+  &:focus {
+    border: 1px solid #B6CAE6;
+    border-radius: 15px;
+  }
+}
