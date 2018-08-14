@@ -4,11 +4,12 @@ import Header from "./components/Header"
 import Search from "./components/Search"
 import MainBlock from "./components/MainBlock"
 import PreviewMoviesList from "./components/PreviewMoviesList"
+import CategoriesRoute from "./routes/CategoriesRoute"
+import Footer from "./components/Footer"
 
 class App extends Component {
 
   render() {
-    console.log(window.store.getState())
     return(
       <React.Fragment>
         <Header/>
@@ -18,6 +19,8 @@ class App extends Component {
           <MainBlock exact={false} path={`/`} title="Search">
             <Search/>
           </MainBlock>
+
+          <CategoriesRoute/>
 
           <MainBlock exact={true} path={`/`} title="Popular">
             <PreviewMoviesList category={'popular'}/>
@@ -32,6 +35,8 @@ class App extends Component {
           </MainBlock>
 
         </main>
+
+        <Footer/>
 
       </React.Fragment>
     )

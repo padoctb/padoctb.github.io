@@ -1,11 +1,12 @@
 import {Record} from 'immutable'
 import setIdKeyObj from "./../tools/misc/setIdKeyObj.js"
 import {
-  PREVIEW_MOVIES_LOADED,
-  PREVIEW_MOVIES_ERROR
+  PREVIEW_MOVIES,
+  LOADED,
+  ERROR
 } from './../constants'
 
-const PreviewMovie = Record({
+export const PreviewMovie = Record({
   id: null,
   vote_average: 0,
   title: null,
@@ -28,12 +29,12 @@ export default (prevState = new PreviewsList({}), action) => {
   const {type, payload, response} = action
 
   switch (type) {
-    case PREVIEW_MOVIES_LOADED:
+    case PREVIEW_MOVIES + LOADED:
       return prevState
         .setIn([payload, 'entities'], setIdKeyObj(response, PreviewMovie))
         .setIn([payload, 'loaded'], true)
         
-    case PREVIEW_MOVIES_ERROR:
+    case PREVIEW_MOVIES + ERROR:
       return prevState.setIn([payload, 'error'], payload)
 
     default:

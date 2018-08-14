@@ -9,7 +9,7 @@ import {
 } from './../../selectors'
 import {loadPreviewMoviesList} from './../../action_creators'
 import MoviePreview from "./../MoviePreview"
-import PreviewMoviesBlock from "./../PreviewMoviesBlock"
+import MoviesListBlock from "./../MoviesListBlock"
 import {Link} from 'react-router-dom'
 
 class PreviewMoviesList extends PureComponent {
@@ -34,11 +34,17 @@ class PreviewMoviesList extends PureComponent {
     if(!loaded) return <Loader/>;
 
     const body = movies.map((elem, i) => {
-      if(i >= 10) return;
-      return <li key={elem}><Link className='preview-movies-item' to={`/movies/${elem.id}`}><MoviePreview posterWidth={220} movieData={elem}/></Link></li>
+      if(i >= 10) return null;
+      return <li key={elem.id}><Link className='preview-movies-item' to={`/movies/${elem.id}`}><MoviePreview posterWidth={220} movieData={elem}/></Link></li>
     })
 
-    return <PreviewMoviesBlock>{body}</PreviewMoviesBlock>  
+    return (
+    <MoviesListBlock>
+      {body}
+      <div className="movies-list-preview__more-btn-wrapper">
+        <Link className="movies-list-preview__more-btn" to={`/category/${this.props.category}/1`}>View more</Link>
+      </div>
+    </MoviesListBlock>)
   }
 
   componentDidMount() {
