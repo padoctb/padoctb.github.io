@@ -16,6 +16,7 @@ class Pagination extends Component {
     
     let prev = +currentPage - 1 <= 0 ? totalPages : +currentPage - 1
     let next = +currentPage + 1 > totalPages ? 1 : +currentPage + 1
+    
     return(
       <React.Fragment>
         <div className="pagination">

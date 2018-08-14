@@ -7,7 +7,6 @@ import {
   getCategoryMoviesList,
   getCategoryMoviesTotalPages
 } from "./../../selectors"
-import {Link} from 'react-router-dom'
 import MoviesListBlock from "./../MoviesListBlock/"
 import MoviePreview from "./../MoviePreview/"
 import Pagination from "./../Pagination"
@@ -37,7 +36,7 @@ class CategoryMoviesList extends Component {
     if(!movies) return <Loader/>;
 
     const body = movies.valueSeq().toArray().map((elem, i) => {
-      return <li key={elem.id}><Link className='preview-movies-item' to={`/movies/${elem.id}`}><MoviePreview posterWidth={220} movieData={elem}/></Link></li>
+      return <li key={elem.id}><MoviePreview link={`/movies/${elem.id}`} posterWidth={220} movieData={elem}/></li>
     })
 
     return (
@@ -51,9 +50,9 @@ class CategoryMoviesList extends Component {
   }
 
   componentDidMount() {
-    const {categoryLoad, page, movies} = this.props
+    const {categoryLoad, page, movies, totalPages} = this.props
 
-    if(!movies) this.props.loadCategoryMoviesList(categoryLoad, page)
+    if(!movies) this.props.loadCategoryMoviesList(categoryLoad, page, totalPages)
   }
 }
 

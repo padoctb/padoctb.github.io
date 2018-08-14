@@ -5,6 +5,8 @@ import {
   CATEGORY_MOVIES,
   LOAD_START
 } from './../constants'
+import history from './../history'
+import isNumeric from "./../tools/misc/isNumeric"
 
 export function loadPreviewMoviesList(category) {
 
@@ -23,22 +25,32 @@ export function loadPreviewMoviesList(category) {
   }
 }
 
-export function loadCategoryMoviesList(category, page) {
+export function loadCategoryMoviesList(category, page, totalPages) {
   return (dispatch) => {
     dispatch({
       type: CATEGORY_MOVIES + LOAD_START,
       payload: category
     })
 
+    //catch incorrect url
+    if(+page < 1) return history.push(`/category/${category}/1`);
+    if(!isNumeric(+page)) return history.push(`/category/${category}/1`); 
+
     fetch(`https://api.themoviedb.org/3/movie/${category}?api_key=b6d2e3a714047dd33bb390fcbc6cdc5f&language=en-US&page=${page}`)
       .then(res => res.json())
-      .then(res => dispatch({
+      .then(res => {
+        if(+page > res.total_pages) return history.push(`/category/${category}/${res.total_pages}`);
+        dispatch({
         type: CATEGORY_MOVIES + LOADED,
         payload: {
           page,
           category
         },
         response: res
-      }))
+      })
+      })
+      .catch(error => {
+        console.log(error)
+      })
   }
 }

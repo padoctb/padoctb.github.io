@@ -9,6 +9,17 @@ import Footer from "./components/Footer"
 
 class App extends Component {
 
+  state = {
+    error: null
+  }
+
+  componentDidCatch(error, info) {
+    console.log(error, info)
+    this.setState({
+      error: error
+    })
+  }
+
   render() {
     return(
       <React.Fragment>

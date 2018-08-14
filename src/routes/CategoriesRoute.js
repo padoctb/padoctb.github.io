@@ -1,13 +1,19 @@
 import React, {Component} from "react"
-import {Route} from 'react-router-dom'
+import {Route, Redirect} from 'react-router-dom'
 import MainBlock from './../components/MainBlock'
 import CategoryMoviesList from './../components/CategoryMoviesList'
+import getNormalizedTitle from './../tools/misc/getNormalizedTitle.js'
 
 class CategoriesRoute extends Component {
 
   render() {
     return(
-      <Route path={`/category/:category/:page`} render={(props) => this.getCategoryList(props)}/>
+      <React.Fragment>
+        <Route exact path={`/category/:category`} render={({match}) => {
+          return <Redirect to={`/category/${match.params.category}/1`}/>
+        }}/>
+        <Route exact path={`/category/:category/:page`} render={(props) => this.getCategoryList(props)}/>
+      </React.Fragment>
     )
   }
 
@@ -15,11 +21,8 @@ class CategoriesRoute extends Component {
 
     const {category, page} = match.params
 
-    let categoryTitle = category.split("_")
-    categoryTitle = categoryTitle.map(elem => {
-      return elem[0].toUpperCase() + elem.slice(1);
-    })
-    categoryTitle = categoryTitle.join(" ")
+    //get normalized title from get title (x_x = X X / xx = Xx)
+    let categoryTitle = getNormalizedTitle(category)
 
     return (
       <MainBlock key={page} title={categoryTitle}>
