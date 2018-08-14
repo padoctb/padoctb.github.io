@@ -6,6 +6,7 @@ import MainBlock from "./components/MainBlock"
 import PreviewMoviesList from "./components/PreviewMoviesList"
 import CategoriesRoute from "./routes/CategoriesRoute"
 import Footer from "./components/Footer"
+import MoviesRoute from "./routes/MoviesRoute"
 
 class App extends Component {
 
@@ -32,6 +33,8 @@ class App extends Component {
           </MainBlock>
 
           <CategoriesRoute/>
+
+          <MoviesRoute/>
 
           <MainBlock exact={true} path={`/`} title="Popular">
             <PreviewMoviesList category={'popular'}/>

@@ -3,7 +3,9 @@ import {
   LOADED,
   ERROR,
   CATEGORY_MOVIES,
-  LOAD_START
+  LOAD_START,
+  MOVIE,
+  MOVIE__RECOMMEND
 } from './../constants'
 import history from './../history'
 import isNumeric from "./../tools/misc/isNumeric"
@@ -52,5 +54,32 @@ export function loadCategoryMoviesList(category, page, totalPages) {
       .catch(error => {
         console.log(error)
       })
+  }
+}
+
+export function loadMovieDetails(movieId) {
+  return (dispatch) => {
+    dispatch({
+      type: MOVIE + LOAD_START,
+      payload: movieId
+    })
+
+    fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=b6d2e3a714047dd33bb390fcbc6cdc5f&language=en-US`)
+      .then(res => res.json())
+      .then(res => dispatch({
+        type: MOVIE + LOADED,
+        payload: movieId,
+        response: res
+      }))
+      .then(res => {
+        fetch(`https://api.themoviedb.org/3/movie/${movieId}/recommendations?api_key=b6d2e3a714047dd33bb390fcbc6cdc5f&language=en-US&page=1`)
+          .then(res => res.json())
+          .then(res => dispatch({
+            type: MOVIE__RECOMMEND + LOADED,
+            payload: movieId,
+            response: res
+          }))
+      })
+      .catch(error => console.log(error))
   }
 }

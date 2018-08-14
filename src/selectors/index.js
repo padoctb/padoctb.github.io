@@ -14,3 +14,8 @@ export const getCategoryMoviesTotalPages = (store, {categoryLoad}) => {
     return store.categoryMoviesList.get(categoryLoad).totalPages
   }
 }
+
+export const getMovieDetails = (store, {movieId}) => {
+  if(!store.movieDetail.get(movieId)) return;
+  return store.movieDetail.get(movieId)
+}
