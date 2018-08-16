@@ -5,7 +5,8 @@ import {
   CATEGORY_MOVIES,
   LOAD_START,
   MOVIE,
-  MOVIE__RECOMMEND
+  MOVIE__RECOMMEND,
+  CHANGE_FAVORITES
 } from './../constants'
 import history from './../history'
 import isNumeric from "./../tools/misc/isNumeric"
@@ -81,5 +82,12 @@ export function loadMovieDetails(movieId) {
           }))
       })
       .catch(error => console.log(error))
+  }
+}
+
+export function changeFavorites(movieData) {
+  return {
+    type: CHANGE_FAVORITES,
+    payload: movieData
   }
 }

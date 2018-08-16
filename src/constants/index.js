@@ -8,3 +8,5 @@ export const CATEGORY_MOVIES = 'CATEGORY_MOVIES'
 
 export const MOVIE = 'MOVIE'
 export const MOVIE__RECOMMEND = 'MOVIE__RECOMMEND'
+
+export const CHANGE_FAVORITES = 'CHANGE_FAVORITES'

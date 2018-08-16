@@ -1,6 +1,7 @@
 @import "./../../styles/_vars.scss";
 
 .movie-details {
+  position: relative;
   &__wrapper {
     display: flex;
     align-items: flex-start;
@@ -25,6 +26,26 @@
       color: $gray;
     }
   }
+  &__add-favorites-btn {
+    background-color: #449211;
+    color: $lightgray;
+    padding: 9px;
+    border: 0;
+    outline: none;
+    border-radius: 5px;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+    position: absolute;
+    top: 125px;
+    right: 30px;
+    &--active {
+      background-color: #B11515;
+    }
+    &:hover {
+      opacity: 1;
+    }
+  }
 }
 
 @media screen and (max-width: 700px) {
@@ -40,6 +61,12 @@
     &__details-container {
       margin: 0 auto;
       width: 100%;
+    }
+    &__add-favorites-btn {
+      top: 0;
+      right: 0;
+      margin-bottom: 20px;
+      position: relative;
     }
   }
 }

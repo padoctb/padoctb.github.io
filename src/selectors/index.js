@@ -19,3 +19,7 @@ export const getMovieDetails = (store, {movieId}) => {
   if(!store.movieDetail.get(movieId)) return;
   return store.movieDetail.get(movieId)
 }
+
+export const movieInFavorites = (store, {movieId}) => {
+  return Object.keys(store.favoritesMovies).indexOf(movieId) >= 0 ? true : false
+}

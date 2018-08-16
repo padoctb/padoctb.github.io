@@ -1,9 +1,9 @@
 import React, {Component} from "react"
 import PropTypes from 'prop-types'
 import "./style.scss"
-import {loadMovieDetails} from "./../../action_creators"
+import {loadMovieDetails, changeFavorites} from "./../../action_creators"
 import {connect} from "react-redux"
-import {getMovieDetails} from "./../../selectors"
+import {getMovieDetails, movieInFavorites} from "./../../selectors"
 import Loader from "./../Loader"
 import MoviePreview from "./../MoviePreview"
 import MoviesListBlock from "./../MoviesListBlock"
@@ -12,10 +12,12 @@ class Movie extends Component {
 
   static propTypes = {
     movieId: PropTypes.string.isRequired,
-    movieDetails: PropTypes.object
+    movieDetails: PropTypes.object,
+    movieInFavorites: PropTypes.bool.isRequired
   } 
 
   render() {
+    console.log('d1')
     return(
       <React.Fragment>
         {this.body}
@@ -24,7 +26,7 @@ class Movie extends Component {
   }
 
   get body() {
-    const {movieDetails} = this.props
+    const {movieDetails, movieInFavorites} = this.props
 
     if(!movieDetails || !movieDetails.title) return <Loader/>;
 
@@ -43,6 +45,12 @@ class Movie extends Component {
         <div className="movie-details__wrapper">
           <img className="movie-details__poster" width='300' alt='movie__poster' src={`https://image.tmdb.org/t/p/w500/${movieDetails.poster_path}`}/>
           <div className="movie-details__details-container">
+
+          <button onClick={this.changeFavorites} className={movieInFavorites ? 
+            "movie-details__add-favorites-btn movie-details__add-favorites-btn--active" 
+            : "movie-details__add-favorites-btn"}>
+            {movieInFavorites ? 'Remove from favorites' : 'Add to favorites'}
+          </button>
 
             <div className="movie-details__title">
               <h2>{movieDetails.title}</h2>
@@ -103,6 +111,12 @@ class Movie extends Component {
       )
   }
 
+  changeFavorites = () => {
+    const {poster_path, id, title, vote_average} = this.props.movieDetails.toObject()
+
+    this.props.changeFavorites({poster_path, id, title, vote_average})
+  }
+
   componentDidMount() {
     if(!this.props.movieDetails) this.props.loadMovieDetails(this.props.movieId)
   }
@@ -110,8 +124,10 @@ class Movie extends Component {
 
 export default connect((store, ownProps) => {
   return {
-    movieDetails: getMovieDetails(store, ownProps)
+    movieDetails: getMovieDetails(store, ownProps),
+    movieInFavorites: movieInFavorites(store, ownProps)
   }
 }, {
-  loadMovieDetails
+  loadMovieDetails,
+  changeFavorites
 })(Movie)
