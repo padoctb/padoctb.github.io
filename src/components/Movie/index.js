@@ -17,7 +17,6 @@ class Movie extends Component {
   } 
 
   render() {
-    console.log('d1')
     return(
       <React.Fragment>
         {this.body}

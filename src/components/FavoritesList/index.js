@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import MoviesListBlock from "./../MoviesListBlock/"
 import MoviePreview from "./../MoviePreview/"
 import PropTypes from 'prop-types'
+import {valuesPolyfill} from "./../../tools/misc/polyfills.js"
 
 class FavoritesList extends PureComponent {
 
@@ -23,9 +24,11 @@ class FavoritesList extends PureComponent {
 
     const {favoritesMovies} = this.props
 
+    const values = Object.values || valuesPolyfill;
+
     if(Object.keys(favoritesMovies).length === 0) return <span className="favorites__empty">Your favorite list is empty.</span>;
 
-    const body = Object.values(favoritesMovies).map((elem, i) => {
+    const body = values(favoritesMovies).map((elem, i) => {
       return <li key={elem.id}><MoviePreview link={`/movies/${elem.id}`} posterWidth={220} movieData={elem}/></li>
     })
 

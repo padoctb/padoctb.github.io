@@ -5,6 +5,11 @@
   &__wrapper {
     display: flex;
     align-items: flex-start;
+    display: -webkit-box;
+    display: -ms-flexbox;
+-webkit-box-align: start;
+    -ms-flex-align: start;
+        align-items: flex-start;
   }
   &__details-container {
     margin-left: 40px;
@@ -45,6 +50,17 @@
     &:hover {
       opacity: 1;
     }
+  }
+}
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) { // IE 11
+  .movie-details__wrapper {
+    display: inline-block;
+    text-align: center;
+  }
+
+  .movie-details__details-container {
+    margin-left: 0;
   }
 }
 

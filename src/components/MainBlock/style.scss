@@ -43,3 +43,10 @@
   }
 }
 
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) { // IE 11
+    .main-block {
+      max-width: 940px;
+      margin: 30px auto;
+    }
+  }
+
