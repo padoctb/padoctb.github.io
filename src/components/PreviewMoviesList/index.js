@@ -35,7 +35,7 @@ class PreviewMoviesList extends PureComponent {
 
     const body = movies.map((elem, i) => {
       if(i >= 10) return null;
-      return <li key={elem.id}><Link className='preview-movies-item' to={`/movies/${elem.id}`}><MoviePreview posterWidth={220} movieData={elem}/></Link></li>
+      return <li key={elem.id}><MoviePreview link={`/movies/${elem.id}`} posterWidth={220} movieData={elem}/></li>
     })
 
     return (

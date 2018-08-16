@@ -14,5 +14,3 @@ class ScrollToTop extends Component {
 }
 
 export default withRouter(ScrollToTop)
-
-//скролл вверх при переходе на другой роут

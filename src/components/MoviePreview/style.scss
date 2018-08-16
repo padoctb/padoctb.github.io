@@ -24,15 +24,27 @@
     margin: 0;
     border-radius: 10px;
   }
-  & .preview-movies-item__title {
+  &__title {
     font-weight: 400;
     font-size: 14px;
     padding: 0 17px;
+    margin-bottom: 30px;
   }
-  & .preview-movies-item__vote-average {
+  &__vote-average {
     display: block;
-    bottom: 0;
+    bottom: 10px;
     font-size: 12px;
     color: #969696;
+    position: absolute;
+  }
+}
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .preview-movies-item {
+    text-align: center;
+    &__vote-average {
+      position: relative;
+      text-align: center;
+    }
   }
 }

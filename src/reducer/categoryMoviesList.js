@@ -19,10 +19,10 @@ export default (prevState = CategoriesList, action) => {
 
   switch (type) {
     case CATEGORY_MOVIES + LOAD_START:
+      if(prevState.get(payload) !== undefined) return prevState;
       return prevState.set(payload, CategoryData({}))
 
     case CATEGORY_MOVIES + LOADED:
-      console.log(response)
       return prevState
       .setIn([payload.category, 'entities', payload.page], setIdKeyObj(response.results, PreviewMovie))
       .setIn([payload.category, 'totalPages'], response.total_pages)

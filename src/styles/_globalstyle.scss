@@ -27,3 +27,14 @@ body {
   @include mainWrapper()
   min-height: calc(100vh - 80px); //footer fix
 }
+
+.baseAnim-appear {
+  opacity: 0.01;
+  transform: translateY(-50px);
+}
+
+.baseAnim-appear.baseAnim-appear-active {
+  opacity: 1;
+  transform: translateY(0px);
+  transition: all .3s ease-in;
+}

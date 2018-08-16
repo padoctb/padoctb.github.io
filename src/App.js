@@ -6,8 +6,21 @@ import MainBlock from "./components/MainBlock"
 import PreviewMoviesList from "./components/PreviewMoviesList"
 import CategoriesRoute from "./routes/CategoriesRoute"
 import Footer from "./components/Footer"
+import MoviesRoute from "./routes/MoviesRoute"
+import FavoritesList from "./components/FavoritesList"
 
 class App extends Component {
+
+  state = {
+    error: null
+  }
+
+  componentDidCatch(error, info) {
+    console.log(error, info)
+    this.setState({
+      error: error
+    })
+  }
 
   render() {
     return(
@@ -20,7 +33,13 @@ class App extends Component {
             <Search/>
           </MainBlock>
 
+          <MainBlock exact={false} path={`/`} title="Favorites">
+            <FavoritesList/>
+          </MainBlock>
+
           <CategoriesRoute/>
+
+          <MoviesRoute/>
 
           <MainBlock exact={true} path={`/`} title="Popular">
             <PreviewMoviesList category={'popular'}/>
