@@ -3,4 +3,8 @@
 IE 11+.
 React, Redux, Redux-thunk, React-router, SASS.
 
+### API
+
+https://developers.themoviedb.org/3
+
 
